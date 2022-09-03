@@ -37,12 +37,13 @@ public class ExcelReader {
     // returns the row count in a sheet
     public int getRowCount(String sheetName){
         int index = workbook.getSheetIndex(sheetName);
-        if(index==-1)
+        if( index == -1 ){
             return 0;
+        }
         else{
-        sheet = workbook.getSheetAt(index);
-        int number=sheet.getLastRowNum()+1;
-        return number;
+            sheet = workbook.getSheetAt(index);
+            int number=sheet.getLastRowNum()+1;
+            return number;
         }  
     }
    
@@ -53,18 +54,25 @@ public class ExcelReader {
                 return "";
             int index = workbook.getSheetIndex(sheetName);
             int col_Num = -1;
-            if (index == -1)
+            // if not found sheet return 
+            if (index == -1){
                 return "";
+            }
             sheet = workbook.getSheetAt(index);
             row = sheet.getRow(0);
+            // if found update the num
             for (int i = 0; i < row.getLastCellNum(); i++) {
                 if (row.getCell(i).getStringCellValue().trim().equals(colName.trim()))
                     col_Num = i;
             }
-            if (col_Num == -1)
+            // not found return
+            if (col_Num == -1){
                 return "";
+            }
+            
             sheet = workbook.getSheetAt(index);
             row = sheet.getRow(rowNum - 1);
+            
             if (row == null)
                 return "";
             cell = row.getCell(col_Num);
@@ -94,7 +102,7 @@ public class ExcelReader {
         }
         catch (Exception e) {
             e.printStackTrace();
-            return "row " + rowNum + " or column " + colName + " does not exist in xls";
+            return "row " + rowNum + " or column " + colName + " does not exist in excel file";
         }
     }
 }
