@@ -183,25 +183,6 @@ public class Xls_Reader {
             return "row " + rowNum + " or column " + colName + " does not exist in xls";
         }
     }
-       
-    public boolean fisClose(String  sheetname){    
-       
-        FileOutputStream fileOut;
-        try {
-             workbook.createSheet(sheetname);  
-             fileOut = new FileOutputStream(path);
-             workbook.write(fileOut);
-             fileOut.close();          
-        } catch (Exception e) {        
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-   
+      
  
-    // to run this on stand alone
-    public static void main(String arg[]) throws IOException{
-   
-    }  
 }
